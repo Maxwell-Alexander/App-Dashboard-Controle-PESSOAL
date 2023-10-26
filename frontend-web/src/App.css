@@ -1,0 +1,30 @@
+#root {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 70px auto;
+  grid-template-rows: 70px auto;
+  grid-auto-rows: minmax(70px, auto);
+  grid-template-areas:
+    "boxSidebar boxNavbar "
+    "boxSidebar container "
+  ;
+  transition: .25s linear;
+
+}
+
+
+.boxNavbar {
+  grid-area: boxNavbar;
+
+}
+
+
+.boxSidebar {
+  grid-area: boxSidebar;
+
+}
+
+.boxContainer {
+  grid-area: container;
+  padding: 5%;
+}
