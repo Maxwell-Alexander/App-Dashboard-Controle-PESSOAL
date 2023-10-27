@@ -9,10 +9,6 @@
 }
 
 
-.sidebar:hover {
-    width: 220px;
-}
-
 .sidebar ul {
     position: absolute;
     width: 100%;
