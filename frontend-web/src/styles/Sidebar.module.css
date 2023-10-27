@@ -4,7 +4,7 @@
     width: 70px;
     height: 100%;
     overflow-x: hidden;
-    transition: .2s;
+    transition: .25s;
 
 }
 
@@ -24,7 +24,7 @@
     width: 100%;
     min-width: 250px;
     line-height: 2.5;
-    
+
 }
 
 .sidebar ul li a:hover {
@@ -61,7 +61,7 @@
     position: relative;
     white-space: nowrap;
 
-    
+
     /*display: block;
     height: 60px;
     line-height: 60px;*/

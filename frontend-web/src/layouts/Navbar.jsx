@@ -7,7 +7,7 @@ function Navbar() {
 
     let openSidebar = false;
 
-    function Expandir() {
+    function expandirSidebar() {
 
         let sidebar = document.getElementById('sidebar');
         let root = document.getElementById('root');
@@ -29,11 +29,10 @@ function Navbar() {
     }
 
 
-
     return (
         <div className={styles.navbar}>
 
-            <div id={styles.iconExpandir} onClick={Expandir}>
+            <div id={styles.iconExpandir} onClick={expandirSidebar}>
                 <CiMenuBurger />
             </div>
 
