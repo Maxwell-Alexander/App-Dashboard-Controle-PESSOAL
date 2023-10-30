@@ -11,6 +11,20 @@ form input {
     font-size: 1rem;
     padding-left: 5px;
 }
+.boxBusca{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.campoBusca {
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 5px;
+
+}
 
 form select {
     width: 100%;
@@ -39,14 +53,12 @@ form input::placeholder {
     align-items: center;
     background-color: #007bff;
     color: white;
-    height: 1.8rem;
+    height: 1.9rem;
     border: none;
     border-radius: 2px;
 
     margin: 0;
-
     max-width: 300px;
-
 }
 
 .bto_salvar {
@@ -55,12 +67,30 @@ form input::placeholder {
     align-items: center;
     background-color: #5cb85c;
     color: white;
-    height: 1.8rem;
+    height: 1.9rem;
     border: none;
     border-radius: 2px;
 
     margin: 0;
-
     max-width: 300px;
+}
 
+.bto_adicionar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff581c;
+    color: white;
+    height: 1.9rem;
+    border: none;
+    border-radius: 2px;
+
+    margin: 0;
+    max-width: 300px;
+}
+.bto_adicionar:hover,
+.bto_cadastrar:hover,
+.bto_salvar:hover{
+    box-shadow: 1px 0px 10px #00000052;
+    cursor: pointer;
 }

@@ -2,6 +2,8 @@ import styles from '../../styles/Forms.module.css';
 import stylesTbl from '../../styles/Table.module.css'
 import { CiEdit, CiTrash } from "react-icons/ci";
 
+import BtoAdicionar from './BtoAdicionar';
+
 function FormClient() {
 
     const clientes = [
@@ -21,13 +23,13 @@ function FormClient() {
         { nome: 'ELOY LOPES CIDREIRA JR.', tel: '(63)99487562' },
         { nome: 'ARI ANTUNES', tel: '(63)99742078' },
         { nome: 'WELLINGTON SIMAS', tel: '(63)99364835' },
-        { nome: 'LINELSON DE B. RODRIGUES', tel: '(63)85078319' },
+        { nome: 'LINELSON RODRIGUES', tel: '(63)85078319' },
         { nome: 'EVILÁSIO FRANCISCO PINHEIRO', tel: '(63)91994142' },
-        { nome: 'IDEL CHAVES MACHADO DE A', tel: '(63)97720597' },
+        { nome: 'IDEL CHAVES MACHADO', tel: '(63)97720597' },
         { nome: 'DARCI MARIA DA ROSA', tel: '(63)99722130' },
         { nome: 'MICHELE MAROUVO', tel: '(63)99945415' },
         { nome: 'PATRICIA DIAS MASSANARES', tel: '(63)99492102' },
-        { nome: 'ZULEICA OLIVEIRA F. ROSA', tel: '(63)99599825' },
+        { nome: 'ZULEICA OLIVEIRA ROSA', tel: '(63)99599825' },
         { nome: 'MARCOS JOSÉ FONTES', tel: '(63)99426971' },
         { nome: 'LEONICE CLARO SOARES', tel: '(63)96882551' },
         { nome: 'GUILHERME SANCHES', tel: '(63)98098679' },
@@ -38,16 +40,58 @@ function FormClient() {
         { nome: 'JEAN CARLOS TEIXEIRA', tel: '(63)98128186' }
     ]
 
+
+
+
+    function buscar() {
+
+        const INPUT_BUSCA = document.getElementById('campoBusca');
+        const TABELA_CLIENTES = document.getElementById('tableCliente').childNodes[1];
+
+
+        INPUT_BUSCA.addEventListener('keyup', () => {
+
+            let datas = INPUT_BUSCA.value.toUpperCase();
+            let linhas = TABELA_CLIENTES.getElementsByTagName('tr');
+
+
+            for (let posicao in linhas) {
+
+                if (true === isNaN(posicao)) {
+                    continue;
+                }
+
+                let conteudoLinhas = linhas[posicao].innerHTML.toUpperCase();
+
+                if (true === conteudoLinhas.includes(datas)) {
+                    linhas[posicao].style.display = '';
+                } else {
+                    linhas[posicao].style.display = 'none';
+                }
+            }
+
+        })
+
+    }
+
+
+
     return (
 
         <>
             <form action="" className={styles.form}>
                 <input type="text" id="name" name="name" aria-label="name" placeholder="Nome" required />
                 <input type="tel" id="tel" name="tel" aria-label="tel" placeholder="Telefone" required />
-                <input type="submit" className={styles.bto_cadastrar} />
+                <input type="submit" className={styles.bto_cadastrar} value="Cadastrar" />
             </form>
+
+            <span className={styles.boxBusca}>
+                <input type="search" id="campoBusca" className={styles.campoBusca} name="campo busca" aria-label="campo busca" placeholder="Pesquisar" onKeyUp={buscar} />
+                <BtoAdicionar onClick={buscar} />
+            </span>
+
             <div>
-                <table className={stylesTbl.table}>
+                <table className={stylesTbl.table} id='tableCliente'>
                     <thead>
                         <tr>
                             <th>Seq</th>
@@ -58,7 +102,7 @@ function FormClient() {
                     </thead>
                     <tbody>
                         {clientes.map((data, indice) => (
-                            <tr key={indice + 1}>
+                            <tr key={indice + 1} className="infoCliente">
                                 <td>{indice + 1}</td>
                                 <td>{data.nome}</td>
                                 <td>{data.tel}</td>
