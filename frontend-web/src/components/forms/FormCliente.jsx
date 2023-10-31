@@ -3,6 +3,8 @@ import stylesTbl from '../../styles/Table.module.css'
 import { CiEdit, CiTrash } from "react-icons/ci";
 
 import BtoAdicionar from './BtoAdicionar';
+import inputDeBuscaClient from '../../functions/inputDeBusca';
+
 
 function FormClient() {
 
@@ -42,40 +44,6 @@ function FormClient() {
 
 
 
-
-    function buscar() {
-
-        const INPUT_BUSCA = document.getElementById('campoBusca');
-        const TABELA_CLIENTES = document.getElementById('tableCliente').childNodes[1];
-
-
-        INPUT_BUSCA.addEventListener('keyup', () => {
-
-            let datas = INPUT_BUSCA.value.toUpperCase();
-            let linhas = TABELA_CLIENTES.getElementsByTagName('tr');
-
-
-            for (let posicao in linhas) {
-
-                if (true === isNaN(posicao)) {
-                    continue;
-                }
-
-                let conteudoLinhas = linhas[posicao].innerHTML.toUpperCase();
-
-                if (true === conteudoLinhas.includes(datas)) {
-                    linhas[posicao].style.display = '';
-                } else {
-                    linhas[posicao].style.display = 'none';
-                }
-            }
-
-        })
-
-    }
-
-
-
     return (
 
         <>
@@ -86,12 +54,12 @@ function FormClient() {
             </form>
 
             <span className={styles.boxBusca}>
-                <input type="search" id="campoBusca" className={styles.campoBusca} name="campo busca" aria-label="campo busca" placeholder="Pesquisar" onKeyUp={buscar} />
-                <BtoAdicionar onClick={buscar} />
+                <input type="search" id="campoBusca" className={styles.campoBusca} name="campo busca" aria-label="campo busca" placeholder="Pesquisar" onKeyUp={inputDeBuscaClient} />
+                <BtoAdicionar />
             </span>
 
             <div>
-                <table className={stylesTbl.table} id='tableCliente'>
+                <table className={stylesTbl.table} id='table'>
                     <thead>
                         <tr>
                             <th>Seq</th>
@@ -102,7 +70,7 @@ function FormClient() {
                     </thead>
                     <tbody>
                         {clientes.map((data, indice) => (
-                            <tr key={indice + 1} className="infoCliente">
+                            <tr key={indice + 1} >
                                 <td>{indice + 1}</td>
                                 <td>{data.nome}</td>
                                 <td>{data.tel}</td>
