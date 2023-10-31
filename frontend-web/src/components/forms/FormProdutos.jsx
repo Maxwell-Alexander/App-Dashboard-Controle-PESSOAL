@@ -46,7 +46,7 @@ function FormProduto() {
             </form>
 
             <span className={styles.boxBusca}>
-                <input type="search" id="campoBusca" className={styles.campoBusca} name="campo busca" aria-label="campo busca" placeholder="Pesquisar" onKeyUp={inputDeBuscaClient} />
+                <input type="search" id="campoBusca" className={styles.campoBusca} name="campoBusca" aria-label="campo busca" placeholder="Pesquisar" onKeyUp={inputDeBuscaClient} />
                 <BtoAdicionar />
             </span>
 

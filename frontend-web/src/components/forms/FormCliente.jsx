@@ -1,12 +1,25 @@
 import styles from '../../styles/Forms.module.css';
-import stylesTbl from '../../styles/Table.module.css'
-import { CiEdit, CiTrash } from "react-icons/ci";
+import stylesTbl from '../../styles/Table.module.css';
+import '../../styles/Modal.css'
+
 
 import BtoAdicionar from './BtoAdicionar';
 import inputDeBuscaClient from '../../functions/inputDeBusca';
+import { CiEdit, CiTrash } from "react-icons/ci";
+import { MdOutlineClose } from "react-icons/md";
+import Modal from 'react-modal';
+import React, { useState } from 'react';
+
+
+Modal.setAppElement('#root');
 
 
 function FormClient() {
+
+    const [modalIsOpen, setIsOpen] = useState(false);
+
+    const openModal = () => { setIsOpen(true) }
+    const closeModal = () => { setIsOpen(false) }
 
     const clientes = [
         { nome: 'ADIR DE SOUZA', tel: '(63)99733011' },
@@ -47,16 +60,31 @@ function FormClient() {
     return (
 
         <>
-            <form action="" className={styles.form}>
-                <input type="text" id="name" name="name" aria-label="name" placeholder="Nome" required />
-                <input type="tel" id="tel" name="tel" aria-label="tel" placeholder="Telefone" required />
-                <input type="submit" className={styles.bto_cadastrar} value="Cadastrar" />
-            </form>
+
 
             <span className={styles.boxBusca}>
-                <input type="search" id="campoBusca" className={styles.campoBusca} name="campo busca" aria-label="campo busca" placeholder="Pesquisar" onKeyUp={inputDeBuscaClient} />
-                <BtoAdicionar />
+                <input type="search" id="campoBusca" className={styles.campoBusca} name="campoBusca" aria-label="campo busca" placeholder="Pesquisar" onKeyUp={inputDeBuscaClient} />
+                <BtoAdicionar onClick={openModal} />
             </span>
+
+            <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal" overlayClassName="modal-overlay" contentLabel="Example Modal">
+
+
+                <span className="modalClose">
+                    <MdOutlineClose onClick={closeModal}></MdOutlineClose>
+                </span>
+
+
+                <form action="" className={styles.form}>
+                    <fieldset>
+                        <legend>Adicionar Clientes</legend>
+                        <input type="text" id="name" name="name" aria-label="name" placeholder="Nome" required />
+                        <input type="tel" id="tel" name="tel" aria-label="tel" placeholder="Telefone" required />
+                        <input type="submit" className={styles.bto_cadastrar} value="Cadastrar" />
+                    </fieldset>
+                </form>
+
+            </Modal>
 
             <div>
                 <table className={stylesTbl.table} id='table'>
