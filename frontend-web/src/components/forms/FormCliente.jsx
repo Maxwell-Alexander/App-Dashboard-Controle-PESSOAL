@@ -1,14 +1,14 @@
-import styles from '../../styles/Forms.module.css';
-import stylesTbl from '../../styles/Table.module.css';
-import '../../styles/Modal.css'
+import Modal from 'react-modal';
+import { useState } from 'react';
 
+import CampoBusca from './CampoBusca';
 
-import BtoAdicionar from './BtoAdicionar';
-import inputDeBuscaClient from '../../functions/inputDeBusca';
 import { CiEdit, CiTrash } from "react-icons/ci";
 import { MdOutlineClose } from "react-icons/md";
-import Modal from 'react-modal';
-import React, { useState } from 'react';
+
+import styles from '../../styles/Forms.module.css';
+import stylesTbl from '../../styles/Table.module.css';
+import '../../styles/Modal.css';
 
 
 Modal.setAppElement('#root');
@@ -60,20 +60,13 @@ function FormClient() {
     return (
 
         <>
-
-
-            <span className={styles.boxBusca}>
-                <input type="search" id="campoBusca" className={styles.campoBusca} name="campoBusca" aria-label="campo busca" placeholder="Pesquisar" onKeyUp={inputDeBuscaClient} />
-                <BtoAdicionar onClick={openModal} />
-            </span>
+            <CampoBusca modalFuncao={openModal} />
 
             <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal" overlayClassName="modal-overlay" contentLabel="Example Modal">
-
 
                 <span className="modalClose">
                     <MdOutlineClose onClick={closeModal}></MdOutlineClose>
                 </span>
-
 
                 <form action="" className={styles.form}>
                     <fieldset>

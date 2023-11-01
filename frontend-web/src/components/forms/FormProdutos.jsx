@@ -1,13 +1,25 @@
+import Modal from 'react-modal';
+import { useState } from 'react';
+
+import CampoBusca from './CampoBusca';
+
+import { CiEdit, CiTrash } from "react-icons/ci";
+import { MdOutlineClose } from "react-icons/md";
+
 import styles from '../../styles/Forms.module.css';
 import stylesTbl from '../../styles/Table.module.css'
-import { CiEdit, CiTrash } from "react-icons/ci";
+import '../../styles/Modal.css';
 
-import BtoAdicionar from './BtoAdicionar';
-import inputDeBuscaClient from '../../functions/inputDeBusca';
 
+Modal.setAppElement('#root');
 
 
 function FormProduto() {
+
+    const [modalIsOpen, setIsOpen] = useState(false);
+
+    const openModal = () => { setIsOpen(true) }
+    const closeModal = () => { setIsOpen(false) }
 
     const produtos = [
         { produto: 'Arroz', fornecedor: 'Alimentos LTDA', valorProduto: '17,99' },
@@ -35,20 +47,33 @@ function FormProduto() {
         { produto: 'Carne Acém', fornecedor: 'Alimentos LTDA', valorProduto: '23,99' }
     ];
 
+
+
+    
     return (
 
         <>
-            <form action="" className={styles.form}>
-                <input type="text" id="produto" name="produto" aria-label="produto" placeholder="Produto" required />
-                <input type="text" id="fornecedor" name="fornecedor" aria-label="fornecedor" placeholder="Fornecedor" required />
-                <input type="number" id="valorProduto" name="valorProduto" aria-label="valorProduto" placeholder="Valor unitario" step="0.01" required />
-                <input type="submit" className={styles.bto_cadastrar} value="Cadastrar" />
-            </form>
+            <CampoBusca modalFuncao={openModal} />
 
-            <span className={styles.boxBusca}>
-                <input type="search" id="campoBusca" className={styles.campoBusca} name="campoBusca" aria-label="campo busca" placeholder="Pesquisar" onKeyUp={inputDeBuscaClient} />
-                <BtoAdicionar />
-            </span>
+            <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal" overlayClassName="modal-overlay" contentLabel="Example Modal">
+
+                <span className="modalClose">
+                    <MdOutlineClose onClick={closeModal}></MdOutlineClose>
+                </span>
+
+                <form action="" className={styles.form}>
+                    <fieldset>
+                        <legend>Adicionar Produtos</legend>
+                        <input type="text" id="produto" name="produto" aria-label="produto" placeholder="Produto" required />
+                        <input type="text" id="fornecedor" name="fornecedor" aria-label="fornecedor" placeholder="Fornecedor" required />
+                        <input type="number" id="valorProduto" name="valorProduto" aria-label="valorProduto" placeholder="Valor unitario" min="0.01" step="0.01" required />
+                        <input type="submit" className={styles.bto_cadastrar} value="Cadastrar" />
+                    </fieldset>
+                </form>
+
+            </Modal>
+
+
 
             <div>
                 <table className={stylesTbl.table} id='table'>
